@@ -27,7 +27,7 @@
 
     </style>
     <h2>Hello [[prop1]]</h2>
-    <paper-icon-button icon="chevron-left"></paper-icon-button>
+    <paper-icon-button icon="chevron-left" on-tap="_prevImageTap"></paper-icon-button>
     <paper-icon-button icon="chevron-right" on-tap="nextImageTap"></paper-icon-button>
     <div id="cont">
     </div>
@@ -67,6 +67,12 @@
         this.$.cont.removeChild(currImg);
         this.$.cont.appendChild(currImg);
       },
+
+      _prevImageTap: function() {
+        var currImg = this.$.cont.lastChild;
+        var first = this.$.cont.firstChild;
+        this.$.cont.insertBefore(currImg,first);
+      }
 
     });
   </script>
