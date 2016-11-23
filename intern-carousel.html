@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`intern-carousel`
+
+
+@demo demo/index.html 
+-->
+
+<dom-module id="intern-carousel">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'intern-carousel',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'intern-carousel',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
