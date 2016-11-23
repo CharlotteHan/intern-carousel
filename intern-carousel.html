@@ -1,4 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 
 <!--
 `intern-carousel`
@@ -16,9 +18,19 @@
       h2 {
         color: red;
       }
+      #cont {
+        display: -webkit-box;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 300px;
+      }
+
     </style>
     <h2>Hello [[prop1]]</h2>
-    <div id="cont"></div>
+    <paper-icon-button icon="chevron-left"></paper-icon-button>
+    <paper-icon-button icon="chevron-right" on-tap="nextImageTap"></paper-icon-button>
+    <div id="cont">
+    </div>
   </template>
 
   <script>
@@ -49,7 +61,12 @@
         console.log("_imgChanged");
       },
 
-
+      nextImageTap: function(e) {
+        var currImg = this.$.cont.firstChild;
+        console.log(currImg);
+        this.$.cont.removeChild(currImg);
+        this.$.cont.appendChild(currImg);
+      },
 
     });
   </script>
