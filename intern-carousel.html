@@ -13,8 +13,12 @@
       :host {
         display: block;
       }
+      h2 {
+        color: red;
+      }
     </style>
     <h2>Hello [[prop1]]</h2>
+    <div id="cont"></div>
   </template>
 
   <script>
@@ -27,7 +31,25 @@
           type: String,
           value: 'intern-carousel',
         },
+        images: {
+          type: Array,
+          observer: "_imgChanged"
+        }
       },
+
+      attached: function() {
+        this.images = this.getEffectiveChildren();
+      },
+
+      _imgChanged: function() {
+        this.$.cont.innerHTML = "";
+        this.images.forEach(function(m) {
+          this.$.cont.appendChild(m);
+        }.bind(this));
+        console.log("_imgChanged");
+      },
+
+
 
     });
   </script>
