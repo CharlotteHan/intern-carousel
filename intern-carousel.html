@@ -20,16 +20,40 @@
       }
       #cont {
         display: -webkit-box;
-        overflow: hidden;
         white-space: nowrap;
         width: 300px;
+        z-index: -1;
+      }
+      .container {
+        position: relative;
+        width: 1024px;
+      }
+      .button-left {
+        position: absolute;
+        top: 50%;
+        z-index: 1;
+      }
+
+      .button-right {
+        left: 40%;
+        position: absolute;
+        top: 50%;
+        z-index: 1;
       }
 
     </style>
     <h2>Hello [[prop1]]</h2>
-    <paper-icon-button icon="chevron-left" on-tap="_prevImageTap"></paper-icon-button>
-    <paper-icon-button icon="chevron-right" on-tap="nextImageTap"></paper-icon-button>
+    <div class="container center">
+    <div class="button-left">
+      <paper-icon-button icon="chevron-left" on-tap="_prevImageTap">
+      </paper-icon-button>
+    </div>
+    <div class="button-right">
+      <paper-icon-button icon="chevron-right" on-tap="nextImageTap">
+      </paper-icon-button>
+    </div>
     <div id="cont">
+    </div>
     </div>
   </template>
 
@@ -63,7 +87,6 @@
 
       nextImageTap: function(e) {
         var currImg = this.$.cont.firstChild;
-        console.log(currImg);
         this.$.cont.removeChild(currImg);
         this.$.cont.appendChild(currImg);
       },
