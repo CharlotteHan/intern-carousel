@@ -75,6 +75,10 @@
         selected: {
           type: Number,
           value: 0,
+        },
+        currPos: {
+          type: Number,
+          value: 0,
         }
       },
 
@@ -91,15 +95,20 @@
 
       nextImageTap: function(e) {
         var width = this.images[this.selected].width;
-        this.$.cont.style.transform = "translateX(" + width/2 + "px)";
-        console.log(this.$.cont.style.transform);
+        if(this.selected != this.$.cont.children.length - 1){
+          this.currPos = this.currPos + width;
+        }
+        this.$.cont.style.transform = "translateX(-" + this.currPos + "px)";
         this.selected++;
         this.selected = Math.min(this.selected, this.$.cont.children.length - 1);
       },
 
       _prevImageTap: function() {
         var width = this.images[this.selected].width;
-        this.$.cont.style.transform = "translateX(-" + width/2 + "px)";
+        if(this.selected != 0){
+          this.currPos = this.currPos - width;
+        }
+        this.$.cont.style.transform = "translateX(-" + this.currPos + "px)";
         this.selected--;
         this.selected = Math.max(this.selected, 0);
       }
