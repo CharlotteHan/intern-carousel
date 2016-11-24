@@ -23,6 +23,8 @@
         white-space: nowrap;
         width: 300px;
         z-index: -1;
+        transform: translateX(var(--offset));
+        transition: transform(300ms);
       }
       .container {
         position: relative;
@@ -70,6 +72,10 @@
         images: {
           type: Array,
           observer: "_imgChanged"
+        },
+        selected: {
+          type: Number,
+          value: 0,
         }
       },
 
@@ -86,17 +92,23 @@
       },
 
       nextImageTap: function(e) {
-        var currImg = this.$.cont.firstChild;
-        this.$.cont.removeChild(currImg);
-        this.$.cont.appendChild(currImg);
+        var width = this.images[this.selected].width;
+        this.customStyle['--offset'] = width;
+        this.updateStyles();
+        this.selected++;
+        this.selected = Math.min(this.selected, this.$.cont.children.length - 1);
+        console.log(this.selected);
       },
 
       _prevImageTap: function() {
         var currImg = this.$.cont.lastChild;
         var first = this.$.cont.firstChild;
         this.$.cont.insertBefore(currImg,first);
-      }
 
+        this.selected--;
+        this.selected = Math.max(this.selected, 0);
+        console.log(this.selected);
+      }
     });
   </script>
 </dom-module>
