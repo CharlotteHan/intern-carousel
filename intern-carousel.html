@@ -23,8 +23,7 @@
         white-space: nowrap;
         width: 300px;
         z-index: -1;
-        transform: translateX(var(--offset));
-        transition: transform(300ms);
+        transition: transform(3ms);
       }
       .container {
         position: relative;
@@ -88,26 +87,21 @@
         this.images.forEach(function(m) {
           this.$.cont.appendChild(m);
         }.bind(this));
-        console.log("_imgChanged");
       },
 
       nextImageTap: function(e) {
         var width = this.images[this.selected].width;
-        this.customStyle['--offset'] = width;
-        this.updateStyles();
+        this.$.cont.style.transform = "translateX(" + width + "px)";
+        console.log(this.$.cont.style.transform);
         this.selected++;
         this.selected = Math.min(this.selected, this.$.cont.children.length - 1);
-        console.log(this.selected);
       },
 
       _prevImageTap: function() {
-        var currImg = this.$.cont.lastChild;
-        var first = this.$.cont.firstChild;
-        this.$.cont.insertBefore(currImg,first);
-
+        var width = this.images[this.selected].width;
+        this.$.cont.style.transform = "translateX(-" + width + "px)";
         this.selected--;
         this.selected = Math.max(this.selected, 0);
-        console.log(this.selected);
       }
     });
   </script>
