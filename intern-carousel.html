@@ -23,7 +23,7 @@
         white-space: nowrap;
         width: 300px;
         z-index: -1;
-        transition: transform(3ms);
+        transition: transform 300ms;
       }
       .container {
         position: relative;
@@ -91,7 +91,7 @@
 
       nextImageTap: function(e) {
         var width = this.images[this.selected].width;
-        this.$.cont.style.transform = "translateX(" + width + "px)";
+        this.$.cont.style.transform = "translateX(" + width/2 + "px)";
         console.log(this.$.cont.style.transform);
         this.selected++;
         this.selected = Math.min(this.selected, this.$.cont.children.length - 1);
@@ -99,7 +99,7 @@
 
       _prevImageTap: function() {
         var width = this.images[this.selected].width;
-        this.$.cont.style.transform = "translateX(-" + width + "px)";
+        this.$.cont.style.transform = "translateX(-" + width/2 + "px)";
         this.selected--;
         this.selected = Math.max(this.selected, 0);
       }
